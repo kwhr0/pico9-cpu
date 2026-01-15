@@ -1,0 +1,20 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW1NZ-1" pn="GW1NZ-LV1QN48C6/I5">gw1nz1-015</Device>
+    <FileList>
+        <File path="src/attled.v" type="file.verilog" enable="1"/>
+        <File path="src/dcsg.v" type="file.verilog" enable="1"/>
+        <File path="src/gowin_rpll/pll.v" type="file.verilog" enable="1"/>
+        <File path="src/i2c.v" type="file.verilog" enable="1"/>
+        <File path="src/i2s.v" type="file.verilog" enable="1"/>
+        <File path="src/pico9.v" type="file.verilog" enable="1"/>
+        <File path="src/spi.v" type="file.verilog" enable="1"/>
+        <File path="src/timer.v" type="file.verilog" enable="1"/>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
+        <File path="src/volume.v" type="file.verilog" enable="1"/>
+        <File path="src/nano1k.cst" type="file.cst" enable="1"/>
+    </FileList>
+</Project>
