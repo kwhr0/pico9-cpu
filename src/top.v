@@ -13,7 +13,7 @@ wire [8:0] data_in = port[1] ? { 1'b0, spi_data } :
 	{ 1'b0, ~btn_up_n, ~btn_dn_n, ~btn_vol_n, 2'b00, i2c_busy, spi_busy, timer_active };
 wire [8:0] cpu_data_out;
 
-cpu cpu(.clk(clk), .reset(~rst_n), .iord(iord), .iowr(iowr),
+pico9 pico9(.clk(clk), .reset(~rst_n), .iord(iord), .iowr(iowr),
 	.port(port), .data_in(data_in), .data_out(cpu_data_out));
 
 timer #(.CLK(SYSCLK)) timer(.clk(clk), .wr(iowr & ~|port[2:1]), .adr(port[0]), .data(cpu_data_out[7:0]), .active(timer_active));

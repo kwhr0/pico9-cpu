@@ -1,7 +1,9 @@
 // Pico9 CPU
 // Copyright 2026 © Yasuo Kuwahara
 
-module cpu(clk, reset, port, iord, iowr, data_in, data_out);
+// MIT License
+
+module pico9(clk, reset, port, iord, iowr, data_in, data_out);
 input clk, reset;
 input [8:0] data_in;
 output iord, iowr;
@@ -119,7 +121,7 @@ always @(posedge clk)
 	if (s[M3] & ~i[31])
 		src <= i[11] ? cnt == i[29:28] ? i[8:0] : 9'b0 : data;
 
-wire cy = flags[1];
+wire cy = flags[2];
 wire [8:0] logic_y = i[25] ?
 	i[24] ? src | data : src ^ data :
 	i[24] ? src & data : src;
@@ -133,12 +135,12 @@ assign data_out = s[M2] & &i[31:28] ? pc_next[PCMSB:PCMSB-8] :
 
 always @(posedge clk)
 	if (~i[31])
-		if (s[M1]) flags <= 4'b0101;
+		if (s[M1]) flags <= 4'b0011;
 		else if (s[M4])
 			flags <= {
 				shr ? src[0] : add_y[9],
-				flags[2] & ~|alu_y[8:0],
 				shr ? src[0] : add_y[8],
+				flags[1] & ~|alu_y[8:0],
 				flags[0] & ~|alu_y[7:0]
 			};
 
